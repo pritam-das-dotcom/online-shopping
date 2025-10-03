@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Durga Puja Gift Bazaar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <nav class="amazon-navbar">
+      <!-- Logo -->
+      <div class="logo">Durga Puja Gift Bazaar</div>
+
+      <!-- Location -->
+      <div class="location">
+        <span>Deliver All over India</span>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="search-box">
+        <select>
+          <option>All</option>
+          <option>Clothes</option>
+          <option>Electronics</option>
+          <option>Home</option>
+        </select>
+        <input 
+  type="text" 
+  id="searchBar" 
+  placeholder="Search products..." 
+  onkeyup="searchProducts()" 
+  style="width: 100%; padding: 10px; margin: 1px 0; border: 1px solid #ccc; border-radius: 5px;">
+        <button><i class="fa fa-search"></i></button>
+      </div>
+
+      <!-- Account & Orders -->
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="contact.html">Contact</a>
+        <a href="#">Account & Lists</a>
+        <a href="#">Returns & Orders</a>
+      </div>
+
+      <!-- Cart -->
+      <div class="cart" onclick="window.location.href='cart.html'">
+        🛒 Cart (<span id="cartCount">0</span>)
+      </div>
+    </nav>
+
+    <!-- Secondary menu -->
+    <div class="sub-navbar">
+      <a href="#">All</a>
+      <a href="#">Bestsellers</a>
+      <a href="#">Today's Deals</a>
+      <a href="#">Mobiles</a>
+      <a href="#">Electronics</a>
+      <a href="#">Fashion</a>
+      <a href="#">New Releases</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <h2>Our Festive Collection</h2>
+    <div class="card-container" id="productList">
+      <!-- API products will load here -->
+    </div>
+
+    <!-- Product Details Section -->
+<div class="details-container" id="giftDetails" style="display: none;">
+  <button class="back-btn" onclick="backToHome()">⬅ Back to Home</button>
+  <div id="giftContent"></div>
+</div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Durga Puja Gift Bazaar | Global Group of Institutions</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

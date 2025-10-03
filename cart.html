@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart - Durga Puja Gift Bazaar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <nav class="amazon-navbar">
+      <div class="logo">Durga Puja Gift Bazaar</div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="cart">🛒 Cart (<span id="cartCount">0</span>)</div>
+    </nav>
+  </header>
+
+  <!-- Cart Section -->
+  <main>
+    <button class="back-btn" onclick="window.location.href='index.html'">⬅ Back to Home</button>
+    <h2>Your Shopping Cart</h2>
+    <div id="cartItems"></div>
+    <div id="checkoutSection">
+      <button class="checkout-btn" onclick="placeOrder()">✅ Checkout</button>
+    </div>
+    <div id="orderMessage" style="display:none; text-align:center; margin-top:20px;">
+      <h2 style="color:green;">✅ Order Placed Successfully!</h2>
+      <p>Thank you for shopping with <strong>Durga Puja Gift Bazaar</strong></p>
+      <button class="back-btn" onclick="window.location.href='index.html'">⬅ Back to Home</button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Durga Puja Gift Bazaar | Global Group of Institutions</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Display cart items
+    function displayCart() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const cartItemsDiv = document.getElementById("cartItems");
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartItemsDiv.innerHTML = "<p>Your cart is empty.</p>";
+        document.getElementById("checkoutSection").style.display = "none";
+        return;
+      }
+
+      cartItemsDiv.innerHTML = "";
+      cart.forEach((item, index) => {
+        total += item.price;
+        cartItemsDiv.innerHTML += `
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.title}" width="80">
+            <div>
+              <h4>${item.title}</h4>
+              <p>₹${(item.price * 80).toFixed(0)}</p>
+              <button class="remove-btn" onclick="removeFromCart(${index})">❌ Remove</button>
+            </div>
+          </div>
+        `;
+      });
+
+      cartItemsDiv.innerHTML += `<h3>Total: ₹${(total * 80).toFixed(0)}</h3>`;
+    }
+
+    // Remove item from cart
+    function removeFromCart(index) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      displayCart();
+      document.getElementById("cartCount").innerText = cart.length;
+    }
+
+    // Checkout → Order Placed
+    function placeOrder() {
+      localStorage.removeItem("cart"); // Clear cart
+      document.getElementById("cartItems").style.display = "none";
+      document.getElementById("checkoutSection").style.display = "none";
+      document.getElementById("orderMessage").style.display = "block";
+      document.getElementById("cartCount").innerText = "0"; // Update cart count
+    }
+
+    displayCart();
+  </script>
+</body>
+</html>
